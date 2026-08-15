@@ -1,0 +1,100 @@
+<Window x:Class="SoundGuard.App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="clr-namespace:SoundGuard.App.Controls"
+        Title="SoundGuard"
+        Height="720" Width="920"
+        MinHeight="560" MinWidth="720"
+        WindowStartupLocation="CenterScreen"
+        Background="{StaticResource BackgroundBrush}">
+
+    <Grid Margin="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Text="SoundGuard" FontSize="26" FontWeight="Bold" VerticalAlignment="Center"/>
+
+            <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="16,0,0,0" VerticalAlignment="Center">
+                <Ellipse Width="12" Height="12" Fill="{Binding StatusBrush}" VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding StatusText}" Margin="8,0,0,0" FontSize="15" VerticalAlignment="Center"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center">
+                <Border Background="{StaticResource SurfaceBrush}" BorderBrush="{StaticResource BorderBrush}"
+                        BorderThickness="1" CornerRadius="4" Padding="10,4" Margin="0,0,10,0"
+                        Visibility="{Binding IsGameMode, Converter={StaticResource BoolToVisibility}}">
+                    <TextBlock Text="游戏模式" FontSize="12" Foreground="{StaticResource WarningBrush}"/>
+                </Border>
+                <TextBlock Text="{Binding FormatText}" FontSize="12" Foreground="{StaticResource MutedBrush}" VerticalAlignment="Center"/>
+                <TextBlock Margin="12,0,0,0" FontSize="12" Foreground="{StaticResource MutedBrush}" VerticalAlignment="Center">
+                    <Run Text="丢弃帧数: "/><Run Text="{Binding DroppedFrames, Mode=OneWay}"/>
+                </TextBlock>
+            </StackPanel>
+        </Grid>
+
+        <!-- Meters -->
+        <UniformGrid Grid.Row="1" Columns="4" Margin="0,20,0,0">
+            <controls:VerticalMeter Title="Momentary" Unit="LUFS" Minimum="-60" Maximum="-6"
+                                    Value="{Binding MomentaryLufs}"/>
+            <controls:VerticalMeter Title="Short-term" Unit="LUFS" Minimum="-60" Maximum="-6"
+                                    Value="{Binding ShortTermLufs}"/>
+            <controls:VerticalMeter Title="True Peak" Unit="dBFS" Minimum="-60" Maximum="0"
+                                    Value="{Binding TruePeakDb}"/>
+            <controls:VerticalMeter Title="Gain Reduction" Unit="dB" Minimum="0" Maximum="80"
+                                    Value="{Binding GainReductionDb}"/>
+        </UniformGrid>
+
+        <!-- Thresholds -->
+        <GroupBox Grid.Row="2" Header="阈值" Margin="0,20,0,0" Padding="12">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Margin="0,0,20,0">
+                    <TextBlock Text="{Binding LufsThreshold, StringFormat=响度阈值 (LUFS): {0:F1}}" Foreground="{StaticResource MutedBrush}"/>
+                    <Slider Minimum="-26" Maximum="-14" Value="{Binding LufsThreshold, Mode=TwoWay}"
+                            TickFrequency="1" IsSnapToTickEnabled="False" Margin="0,6,0,0"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Margin="0,0,20,0">
+                    <TextBlock Text="{Binding PeakThresholdDb, StringFormat=峰值阈值 (dBFS): {0:F1}}" Foreground="{StaticResource MutedBrush}"/>
+                    <Slider Minimum="-6" Maximum="0" Value="{Binding PeakThresholdDb, Mode=TwoWay}"
+                            TickFrequency="0.5" Margin="0,6,0,0"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2">
+                    <TextBlock Foreground="{StaticResource MutedBrush}">
+                        <Run Text="压限幅度 (50%=默认): "/>
+                        <Run Text="{Binding LimiterStrengthPercent, StringFormat={}{0:0}%}"/>
+                    </TextBlock>
+                    <Slider Minimum="0" Maximum="100" Value="{Binding LimiterStrengthPercent, Mode=TwoWay}"
+                            TickFrequency="10" Margin="0,6,0,0"/>
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+
+        <!-- Actions -->
+        <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,20,0,0">
+            <Button Content="直通 (Bypass)" Command="{Binding ToggleBypassCommand}"/>
+            <Button Content="静音" Command="{Binding MuteCommand}"/>
+            <Button Content="恢复" Command="{Binding RecoverCommand}"/>
+            <Button Content="保存设置" Command="{Binding SaveSettingsCommand}"/>
+        </StackPanel>
+    </Grid>
+</Window>

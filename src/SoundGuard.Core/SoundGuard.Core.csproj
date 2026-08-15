@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <RootNamespace>SoundGuard.Core</RootNamespace>
+    <AssemblyName>SoundGuard.Core</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- MIT-licensed open source. NAudio provides the WASAPI loopback capture and
+         Core Audio endpoint volume/mute wrappers. Everything else is in-repo. -->
+    <PackageReference Include="NAudio" Version="2.2.1" />
+  </ItemGroup>
+
+</Project>
