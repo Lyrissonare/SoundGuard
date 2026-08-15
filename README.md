@@ -4,12 +4,13 @@
 [![Platform](https://img.shields.io/badge/platform-Windows%2010%2F11-blue)](https://www.microsoft.com/windows)
 [![.NET](https://img.shields.io/badge/.NET-8.0-512BD4)](https://dotnet.microsoft.com/download/dotnet/8.0)
 [![Status](https://img.shields.io/badge/status-MVP-orange)](docs/roadmap.md)
+[![IIIA-4](https://img.shields.io/badge/IIIA-4-9370DB)](https://github.com/ErSanSan233/IIIA)
 
 实时捕获 Windows 系统音频输出，监测感知响度（LUFS）与峰值电平（dBFS），在音量过大时自动进行
 增益衰减或系统静音，保护听力与耳机设备。设计目标：**零音质损失、低延迟、不改动声场**。
 
 > **免责声明**：本项目用于听力保护研究，不构成医疗设备或专业听力防护建议。若你已有听力损伤，
-> 请咨询医生或听力学家。
+> 请咨询医生或听力学家。本项目由AI主导构建，开发者不对实际使用效果负责。
 
 ---
 
