@@ -155,5 +155,5 @@ docs/
 
 ## 贡献
 
-欢迎提交 Issue 与 Pull Request。<del>反正提交了我也不会看.<del/>建议先阅读 [架构设计](docs/architecture.md) 与
+欢迎提交 Issue 与 Pull Request。<del>反正提交了我也不会看.</del>建议先阅读 [架构设计](docs/architecture.md) 与
 [路线图](docs/roadmap.md)，了解现有设计决策与后续计划。
