@@ -26,10 +26,10 @@ public class TruePeakTests
     [Fact]
     public void InterSamplePeak_IsDetectedAboveSamplePeak()
     {
-        // 7.5 kHz @ 48 kHz = 6.4 samples/cycle, so no sample lands exactly on the crest: the sample
-        // peak reads ~0.88 while the reconstructed (true) peak is ~1.0. This is the classic
-        // inter-sample overshoot case the 8x oversampler must catch.
-        float[] sine = TestSupport.Sine(7500.0, 1.0, 0.05);
+        // 8 kHz @ 48 kHz = 6 samples/cycle, so the sample grid hits 0°, ±60°, ±120°, 180°: the
+        // sample peak is sin(60°) ≈ 0.866 while the reconstructed (true) peak is ~1.0. This is the
+        // classic inter-sample overshoot case the 8x oversampler must catch.
+        float[] sine = TestSupport.Sine(8000.0, 1.0, 0.05);
 
         double samplePeak = 0.0;
         foreach (float s in sine)
