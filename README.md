@@ -148,7 +148,6 @@ docs/
 - [架构设计](docs/architecture.md)
 - [DSP 数学说明](docs/dsp.md)
 - [路线图](docs/roadmap.md)
-- [发布指南](docs/publishing.md)
 
 ## 许可证
 
@@ -156,5 +155,5 @@ docs/
 
 ## 贡献
 
-欢迎提交 Issue 与 Pull Request。建议先阅读 [架构设计](docs/architecture.md) 与
+欢迎提交 Issue 与 Pull Request。~~反正提交了我也不会看。~~建议先阅读 [架构设计](docs/architecture.md) 与
 [路线图](docs/roadmap.md)，了解现有设计决策与后续计划。
